@@ -26,21 +26,91 @@
             </objects>
             <point key="canvasLocation" x="-514" y="-189"/>
         </scene>
-        <!--View Controller-->
+        <!--Main View Controller-->
         <scene sceneID="amA-Cf-5Qw">
             <objects>
-                <viewController id="0oF-6w-5ns" customClass="ViewController" customModule="AJFlickrDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="0oF-6w-5ns" customClass="MainViewController" customModule="AJFlickrDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vHa-hD-lEl">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OOU-SU-DEe">
+                                <rect key="frame" x="0.0" y="64" width="375" height="56"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="7je-01-9nb">
+                                <rect key="frame" x="0.0" y="120" width="375" height="547"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="0.2667167976" blue="0.79839344249999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="DSu-qF-G5S">
+                                    <size key="itemSize" width="120" height="120"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ThumbnailCell" id="Gyn-c4-KTK" customClass="ThumbnailCell" customModule="AJFlickrDemo">
+                                        <rect key="frame" x="10" y="10" width="120" height="120"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PPn-JM-tQo">
+                                                    <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
+                                                </imageView>
+                                            </subviews>
+                                        </view>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="PPn-JM-tQo" secondAttribute="trailing" id="0ps-ZP-ag2"/>
+                                            <constraint firstItem="PPn-JM-tQo" firstAttribute="top" secondItem="Gyn-c4-KTK" secondAttribute="top" id="Nzg-Bs-LaX"/>
+                                            <constraint firstAttribute="bottom" secondItem="PPn-JM-tQo" secondAttribute="bottom" id="i3y-3M-ULB"/>
+                                            <constraint firstItem="PPn-JM-tQo" firstAttribute="leading" secondItem="Gyn-c4-KTK" secondAttribute="leading" id="p4L-yj-tIY"/>
+                                        </constraints>
+                                        <size key="customSize" width="120" height="120"/>
+                                        <connections>
+                                            <outlet property="imageView" destination="PPn-JM-tQo" id="UM7-9H-FJL"/>
+                                            <segue destination="kvR-M8-plz" kind="show" id="BI2-r4-wNv"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="OFT-EP-C9i"/>
                     </view>
-                    <navigationItem key="navigationItem" id="2Ij-IU-J8T"/>
+                    <navigationItem key="navigationItem" id="2Ij-IU-J8T">
+                        <barButtonItem key="rightBarButtonItem" title="search" id="v2T-hH-pI6">
+                            <connections>
+                                <action selector="search:" destination="0oF-6w-5ns" id="iLE-wn-ujM"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="collectionView" destination="7je-01-9nb" id="gkp-dv-aOw"/>
+                        <outlet property="searchBar" destination="OOU-SU-DEe" id="d1i-OC-vdg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6W3-WC-fi6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="322" y="-189"/>
+            <point key="canvasLocation" x="320.80000000000001" y="-189.3553223388306"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Cy9-hN-Bqf">
+            <objects>
+                <viewController id="kvR-M8-plz" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="aHK-Ma-ymd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="8hA-Q9-AMe"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VYa-fb-P62" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1124" y="-189"/>
         </scene>
     </scenes>
 </document>
